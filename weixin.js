@@ -54,13 +54,36 @@ exports.reply = function* (next) {
         else if (content === '5') {
             var data = yield wechatApi.uploadMaterial('image', __dirname + 
                 '/2.png')
-            console.log(data)
             reply = {
                 type: 'image',
                 mediaId: data.media_id
             }
         }
-        console.log(reply)
+        else if (content === '6') {
+            var data = yield wechatApi.uploadMaterial('video', __dirname + 
+                '/wenger.mp4')
+            console.log(data)
+            reply = {
+                type: 'video',
+                title: '终于看到视频啦',
+                description: '妹纸，深夜敲代码厉害了',
+                mediaId: data.media_id
+            }
+            console.log(reply)
+        }
+        else if (content === '7') {
+            var data = yield wechatApi.uploadMaterial('image', __dirname + 
+                '/2.png')
+            console.log(data)
+            reply = {
+                type: 'music',
+                title: '想听音乐吗',
+                description: '音乐响起来~~~',
+                musicUrl: 'http://sc1.111ttt.com/2016/5/12/10/205101338233.mp3',
+                thumbMediaId: data.media_id
+            }
+            console.log(reply)
+        }
 
         this.body = reply;
     }
