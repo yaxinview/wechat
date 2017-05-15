@@ -54,6 +54,7 @@ exports.reply = function* (next) {
         else if (content === '5') {
             var data = yield wechatApi.uploadMaterial('image', __dirname + 
                 '/2.png')
+            console.log(data)
             reply = {
                 type: 'image',
                 mediaId: data.media_id
@@ -81,6 +82,27 @@ exports.reply = function* (next) {
                 description: '音乐响起来~~~',
                 musicUrl: 'http://sc1.111ttt.com/2016/5/12/10/205101338233.mp3',
                 thumbMediaId: data.media_id
+            }
+            console.log(reply)
+        }
+        else if (content === '8') {
+            var data = yield wechatApi.uploadMaterial('image', __dirname + 
+                '/2.png', {type: 'image'})
+            console.log(data)
+            reply = {
+                type: 'image',
+                mediaId: data.media_id
+            }
+        }
+        else if (content === '9') {
+            var data = yield wechatApi.uploadMaterial('video', __dirname + 
+                '/wenger.mp4', {type: 'video', description: '{"title": "Wenger", "introduction": "Wenger In"}'})
+            console.log(data)
+            reply = {
+                type: 'video',
+                title: '想看视频吗',
+                description: 'Wenger In',
+                mediaId: data.media_id
             }
             console.log(reply)
         }
